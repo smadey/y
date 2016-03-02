@@ -1,0 +1,14 @@
+.DS_Store
+
+node_modules
+npm-debug.log
+
+dist
+coverage
+test/unit/specs.js
+test/unit/specs.js.map
+
+explorations
+.idea
+benchmarks/browser.js
+perf

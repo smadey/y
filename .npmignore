@@ -1,0 +1,10 @@
+
+/build
+/test
+
+/.babelrc
+/.editorconfig
+/.eslintrc.js
+/.eslintrc.test.js
+/.gitignore
+/.npmignore

@@ -1,0 +1,56 @@
+{
+  "name": "y",
+  "version": "0.1.0",
+  "description": "The js library project",
+  "author": "Smadey <smadey@163.com>",
+  "license": "MIT",
+  "main": "dist/y.js",
+  "homepage": "https://github.com/smadey/y",
+  "keywords": [
+    "js",
+    "library"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smadey/y.git"
+  },
+  "bugs": {
+    "url": "https://github.com/smadey/y/issues"
+  },
+  "scripts": {
+    "dev": "webpack --watch --config build/webpack.dev.config.js",
+    "test": "webpack-dev-server --config build/webpack.test.config.js --host 0.0.0.0",
+    "cover": "karma start build/karma.cover.config.js",
+    "unit": "karma start build/karma.unit.config.js",
+    "sauce": "karma start build/karma.sauce.config.js"
+  },
+  "devDependencies": {
+    "babel-core": "^6.6.0",
+    "babel-eslint": "^5.0.0",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-2": "^6.5.0",
+    "eslint": "^2.2.0",
+    "eslint-friendly-formatter": "^1.2.2",
+    "eslint-loader": "^1.3.0",
+    "istanbul-instrumenter-loader": "^0.2.0",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.21",
+    "karma-chrome-launcher": "^0.2.2",
+    "karma-coverage": "^0.5.3",
+    "karma-firefox-launcher": "^0.1.7",
+    "karma-ie-launcher": "^0.2.0",
+    "karma-jasmine": "^0.3.7",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-webpack": "^1.7.0",
+    "object-assign": "^4.0.1",
+    "phantomjs": "^2.1.3",
+    "webpack": "^1.12.14",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "karma-sauce-launcher": "^0.3.1"
+  }
+}
