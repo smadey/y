@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # get files to be linted
-FILES=$(git diff --cached --name-only | grep -E '^src|^test/unit/specs')
+FILES=$(git diff --name-only | grep -E '^src|^test/unit/specs')
 
 # lint them if any
 if [[ $FILES ]]; then
