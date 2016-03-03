@@ -1,9 +1,7 @@
 #!/bin/sh
 
-# get files to be linted
 FILES=$(git diff --name-only | grep -E '^src|^test/unit/specs')
 
-# lint them if any
 if [[ "$FILES" = "" ]]; then
   exit 0
 fi
