@@ -160,10 +160,10 @@ export const asap = (function () {
 
   function handler () {
     pending = false
-    for (let i = 0, n = callbacks.length; i < n; i++) {
-      callbacks[i]()
+
+    while (callbacks.length) {
+      callbacks.shift()()
     }
-    callbacks = []
   }
 
   if (isDefined(MutationObserver)) {

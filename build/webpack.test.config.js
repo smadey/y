@@ -41,7 +41,6 @@ module.exports = {
   },
   devtool: 'source-map',
   eslint: {
-    formatter: require('eslint-friendly-formatter'),
-    configFile: './.eslintrc.test.js'
+    formatter: require('eslint-friendly-formatter')
   }
 }

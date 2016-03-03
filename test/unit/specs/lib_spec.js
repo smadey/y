@@ -476,4 +476,67 @@ describe('lib', () => {
       })
     })
   })
+
+  describe('lib.throttle', () => {
+    it('should enforces a maximum number of times a function can be called over time', done => {
+      let count = 0
+      let fn = _.throttle(() => count++, 100)
+
+      fn()
+      setTimeout(fn, 10)
+      setTimeout(fn, 20)
+      setTimeout(() => expect(count).toBe(1), 50)
+      setTimeout(() => {
+        expect(count).toBe(2)
+        done()
+      }, 200)
+    })
+  })
+
+  describe('lib.debounce', () => {
+    it('should enforces that a function not be called again until a certain amount of time has passed without it being called', done => {
+      let count = 0
+      let fn = _.debounce(() => count++, 100)
+
+      fn()
+      setTimeout(fn, 10)
+      setTimeout(fn, 20)
+      setTimeout(() => expect(count).toBe(0), 50)
+      setTimeout(() => {
+        expect(count).toBe(1)
+        done()
+      }, 200)
+    })
+  })
+
+  describe('lib.asap', () => {
+    it('should executed not direct but as soon as possible', done => {
+      let counter = 0
+      let fn = () => counter++
+
+      _.asap(fn)
+
+      setTimeout(() => {
+        expect(counter).toBe(1)
+        done()
+      }, 0)
+
+      expect(counter).toBe(0)
+    })
+
+    it('should accept context', done => {
+      var ctx = {}
+
+      _.asap(function () {
+        this.id = 1
+      }, ctx)
+
+      _.asap(() => {
+        expect(ctx.id).toBe(1)
+        done()
+      })
+    })
+
+  })
+
 })

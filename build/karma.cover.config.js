@@ -5,7 +5,7 @@ process.env.PHANTOMJS_BIN = 'node_modules/karma-phantomjs-launcher/node_modules/
 
 module.exports = function (config) {
   var options = assign(base, {
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     reporters: ['progress', 'coverage'],
     coverageReporter: {
       reporters: [
