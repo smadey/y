@@ -13,15 +13,22 @@ module.exports = {
     preLoaders: [
       {
         test: /\.js$/,
-        loader: 'eslint',
-        exclude: /node_modules/
+        loader: 'eslint-loader',
+        include: [
+          path.resolve(__dirname, '../src')
+        ]
       }
     ],
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel',
-        exclude: /node_modules/
+        loader: 'babel-loader',
+        include: [
+          path.resolve(__dirname, '../src')
+        ],
+        query: {
+          presets: ['es2015', 'stage-2']
+        }
       }
     ]
   },

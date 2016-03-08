@@ -81,7 +81,7 @@ describe('lib', () => {
   })
 
   describe('lib.isObject', () => {
-    it('should return true if passed window or a(n) array|function|HTMLElement', () => {
+    it('should return true if passed window or a(n) array|object|HTMLElement', () => {
       expect(_.isObject(window)).toBe(true)
 
       expect(_.isObject([])).toBe(true)
@@ -97,6 +97,17 @@ describe('lib', () => {
       expect(_.isObject(0)).toBe(false)
       expect(_.isObject('')).toBe(false)
       expect(_.isObject(function () {})).toBe(false)
+    })
+
+    it('should return false if passed an object and passed force equal', () => {
+      expect(_.isObject({}, true)).toBe(true)
+    })
+
+    it('should return false if passed window or a(n) array|HTMLElement and passed force equal', () => {
+      expect(_.isObject(window, true)).toBe(false)
+
+      expect(_.isObject([], true)).toBe(false)
+      expect(_.isObject(document.createElement('div'), true)).toBe(false)
     })
   })
 
@@ -134,6 +145,25 @@ describe('lib', () => {
       expect(_.isWindow([])).toBe(false)
       expect(_.isWindow({})).toBe(false)
       expect(_.isWindow(document.createElement('div'))).toBe(false)
+    })
+  })
+
+  describe('lib.isDocument', () => {
+    it('should return true if passed document', () => {
+      expect(_.isDocument(document)).toBe(true)
+    })
+
+    it('should return false if passed null|undefined|window or a(n) boolean|number|string|array|object|function|HTMLElement', () => {
+      expect(_.isDocument(null)).toBe(false)
+      expect(_.isDocument()).toBe(false)
+      expect(_.isDocument(window)).toBe(false)
+
+      expect(_.isDocument(false)).toBe(false)
+      expect(_.isDocument(0)).toBe(false)
+      expect(_.isDocument('')).toBe(false)
+      expect(_.isDocument([])).toBe(false)
+      expect(_.isDocument({})).toBe(false)
+      expect(_.isDocument(document.createElement('div'))).toBe(false)
     })
   })
 
@@ -188,6 +218,46 @@ describe('lib', () => {
       arrLike.push(1, 2, 3)
       expect(arrLike.length).toBe(3)
       expect(_.isArrayLike(arrLike)).toBe(true)
+    })
+  })
+
+  describe('lib.toString', () => {
+    it('should return "[object *]" if passed *', () => {
+      expect(_.toString(null)).toBe('[object Null]')
+      expect(_.toString()).toBe('[object Undefined]')
+      expect(_.toString(window)).toBe('[object global]')
+
+      expect(_.toString(false)).toBe('[object Boolean]')
+      expect(_.toString(0)).toBe('[object Number]')
+      expect(_.toString('')).toBe('[object String]')
+      expect(_.toString([])).toBe('[object Array]')
+      expect(_.toString({})).toBe('[object Object]')
+      expect(_.toString(function () {})).toBe('[object Function]')
+      expect(_.toString(document.createElement('div'))).toBe('[object HTMLDivElement]')
+    })
+  })
+
+  describe('lib.toUpperCase', () => {
+    it('should return upper case if passed string', () => {
+      expect(_.toUpperCase('abcd')).toBe('ABCD')
+      expect(_.toUpperCase('abcd', 1)).toBe('Abcd')
+      expect(_.toUpperCase('abcd', -1)).toBe('ABCd')
+    })
+
+    it('should return self if passed an object', () => {
+      let a = {}
+      expect(_.toUpperCase(a)).toBe(a)
+    })
+  })
+
+  describe('lib.toCamelCase', () => {
+    it('should return camel case if passed string', () => {
+      expect(_.toCamelCase('abcd-def-gh')).toBe('abcdDefGh')
+    })
+
+    it('should return self if passed an object', () => {
+      let a = {}
+      expect(_.toCamelCase(a)).toBe(a)
     })
   })
 
@@ -536,7 +606,6 @@ describe('lib', () => {
         done()
       })
     })
-
   })
 
 })

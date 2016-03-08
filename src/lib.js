@@ -22,7 +22,10 @@ export function isArray (obj) {
   return Array.isArray(obj)
 }
 
-export function isObject (obj) {
+export function isObject (obj, isEq) {
+  if (isEq) {
+    return obj !== null && toString(obj) === '[object Object]'
+  }
   return obj !== null && typeof obj === 'object'
 }
 
@@ -32,6 +35,10 @@ export function isFunction (obj) {
 
 export function isWindow (obj) {
   return obj != null && obj === obj.window
+}
+
+export function isDocument (obj) {
+  return obj != null && !!obj.nodeType && obj.nodeType === obj.DOCUMENT_NODE
 }
 
 export function isArrayLike (obj) {
@@ -45,6 +52,27 @@ export function isArrayLike (obj) {
 
   let length = !!obj && 'length' in obj && obj.length
   return length === 0 || (typeof length === 'number' && length > 0 && (length - 1) in obj)
+}
+
+export function toString (obj) {
+  return Object.prototype.toString.call(obj)
+}
+
+export function toUpperCase (str, length) {
+  if (isString(str)) {
+    if (length) {
+      return str.slice(0, length).toUpperCase() + str.slice(length)
+    }
+    return str.toUpperCase()
+  }
+  return str
+}
+
+export function toCamelCase (str) {
+  if (isString(str)) {
+    return str.replace(/-+(.)?/g, (match, chr) => { return chr ? chr.toUpperCase() : '' })
+  }
+  return str
 }
 
 export function extend (obj, ...args) {
