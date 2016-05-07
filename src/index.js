@@ -6,6 +6,6 @@ let y = {
   _
 }
 
-y.version = '0.1.5'
+y.version = '0.1.6'
 
 export default y

@@ -194,7 +194,8 @@ export const asap = (function () {
     }
   }
 
-  if (isDefined(MutationObserver)) {
+  // 此处不能用isDefined方法，因为在IE或者低版本Chrome中会报错，下同
+  if (typeof MutationObserver !== 'undefined') {
     let counter = 1
     let observer = new MutationObserver(handler)
     let textNode = document.createTextNode(counter)
@@ -208,7 +209,8 @@ export const asap = (function () {
       textNode.data = counter
     }
   } else {
-    const context = isDefined(window) ? window : isDefined(global) ? global : {}
+    const context = typeof window !== 'undefined' ? window
+      : typeof global !== 'undefined' ? global : {}
     timerFunc = context.setImmediate || setTimeout
   }
 
