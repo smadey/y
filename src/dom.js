@@ -318,7 +318,7 @@ export default function dom (selector) {
   if (!selector) {
     return new Dom()
   } else if (typeof selector === 'string') {
-    dom = [...document.querySelectorAll(selector.trim())]
+    dom = document.querySelectorAll(selector.trim())
   } else if (selector instanceof Dom) {
     return selector
   } else {
